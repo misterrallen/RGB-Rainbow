@@ -1,9 +1,44 @@
 int R = 9;
 int G = 10;
 int B = 11;
-int num = 0;
 void setup() {
   setColor(0,0,0);
+  attachInterupt(0, sameColor, CHANGE);
+}
+
+void sameColor()
+{
+  if (irrecv.decode(&results))
+  {
+    if (results.value==0x010)
+    {
+       setColor(255,0,0);
+    }
+    if (results.value==0x810)
+    {
+       setColor(255,255,0);
+    }
+    if (results.value==0x410)
+    {
+       setColor(255,0,255);
+    }
+    if (results.value==0xC10)
+    {
+       setColor(0,255,0);
+    }
+    if (results.value==0x210)
+    {
+       setColor(0,255,255);
+    }
+    if (results.value==0xA10)
+    {
+       setColor(0,0,255);
+    }
+    if (results.value==0x610)
+    {
+       rainbow;
+    }
+  } 
 }
 
 void rainbow ()
@@ -37,6 +72,5 @@ void setColor(int red, int green, int blue) {
 
 void loop() 
 {
-  rainbow(); 
+  
 }
- 
