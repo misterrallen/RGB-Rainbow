@@ -1,9 +1,17 @@
+#include <IRremote.h>
+
 int R = 9;
 int G = 10;
 int B = 11;
+int receiverpin = 6;
+
+IRrecv irrecv(receiverpin);
+decode_results results;
+
 void setup() {
+  irrecv.enableIRIn();
   setColor(0,0,0);
-  attachInterupt(0, sameColor, CHANGE);
+  attachInterrupt(2, sameColor, CHANGE);
 }
 
 void sameColor()
@@ -72,5 +80,5 @@ void setColor(int red, int green, int blue) {
 
 void loop() 
 {
-  
+  sameColor();
 }
